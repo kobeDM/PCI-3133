@@ -4,6 +4,7 @@
 // ver 2.0 assignment change (to default)
 // ver 2.1 dynamic range selection from command line parameters
 // ver 2.2 delete "writing" message, set +-10V as default range
+// ver 2.3 add endl to "setting" message
 
 /* **************************************************************
    inputad.c -Source Code of AdInputAD sample program
@@ -126,26 +127,33 @@ depth=DEPTH_DEFAULT;
     if(range[0]==-10&&range[1]==10) {
       //bipolar 10V
       Conf[i].ulRange = AD_10V;
-      fprintf(stderr,"setting AD_10V");
-
+      if(i==0){
+	fprintf(stderr,"setting AD_10V\n");
+      }
     }
     //    if(range[0]==-10&&range[1]==10){
     // Conf[i].ulRange = AD_10V;
           //}
     else if(range[0]==-2.5&&range[1]==2.5){
       Conf[i].ulRange = AD_2P5V;
-      // fprintf(stderr,"setting: AD_2P5V");
+            if(i==0){
+	    fprintf(stderr,"setting: AD_2P5V\n");
+	    }
     }
     else if(range[0]==0){
       //unipolar 5V
       if(range[1]==5){
       Conf[i].ulRange = AD_0_5V;
-      //fprintf(stderr,"setting: AD_0_5V");
+      if(i==0){      
+	fprintf(stderr,"setting: AD_0_5V\n");
+      }
     }
       //unipolar 10
       if(range[1]==10){
       Conf[i].ulRange = AD_0_10V;
-      //fprintf(stderr,"setting: AD_0_10V");
+      if(i==0){
+	fprintf(stderr,"setting: AD_0_10V\n");
+      }
       }
 
     }
@@ -153,7 +161,9 @@ depth=DEPTH_DEFAULT;
     //default setting
     else{
     Conf[i].ulRange = AD_5V;
-      fprintf(stderr,"setting: AD_5V");
+      if(i==0){
+      fprintf(stderr,"setting: AD_5V\n");
+      }
     }
     AdData[i]=0;
     for(j=0;j<MAXDEPTH;j++){
